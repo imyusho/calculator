@@ -15,7 +15,7 @@ const isNumber = (value: string) => {
 export const withThousandSeparators = (input: string) => {
   return input.replace(/\d+(\.\d+)?/g, (num) => {
     const [integerPart, decimalPart] = num.split(".");
-    const formattedInteger = Number(integerPart).toLocaleString();
+    const formattedInteger = Number(integerPart).toLocaleString("en-US");
     return decimalPart
       ? `${formattedInteger}.${decimalPart}`
       : formattedInteger;

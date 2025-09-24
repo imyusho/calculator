@@ -2,6 +2,7 @@ import { useState, type FC } from "react";
 import { flushSync } from "react-dom";
 import { useElementWidth } from "../hooks";
 import {
+  ERROR_MESSAGE,
   getFontSize,
   getResult,
   isOperator,
@@ -44,7 +45,7 @@ export const Calculator: FC = () => {
 
   const onOperator = (operator: string) => {
     setHasTransition(false);
-    resetIfFinished(result);
+    resetIfFinished(result.replaceAll(",", ""));
 
     setInput((x) => {
       if (x === "" || x === "-") {
@@ -104,7 +105,7 @@ export const Calculator: FC = () => {
             >
               {withThousandSeparators(input) || "0"}
             </AdaptiveFontSize>
-            {input && (
+            {input && (result !== ERROR_MESSAGE || isFinished) && (
               <AdaptiveFontSize
                 {...(isFinished ? primaryInputProps : secondaryInputProps)}
               >
