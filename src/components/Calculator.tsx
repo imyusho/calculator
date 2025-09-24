@@ -90,7 +90,7 @@ export const Calculator: FC = () => {
       }}
       className="h-full mx-auto"
     >
-      <div className="h-full flex flex-col text-[#fefefe] pb-12 font-extralight">
+      <div className="h-full flex flex-col text-[#fefefe] pb-12 font-light">
         <div className="flex-1 flex flex-col text-right p-4">
           <div className="flex-1">
             {history && (
@@ -171,6 +171,8 @@ export const Calculator: FC = () => {
           <NumberButton onClick={onNumber}>.</NumberButton>
           <OperationButton
             onClick={() => {
+              if (!input) return;
+
               flushSync(() => setHasTransition(true));
               setIsFinished(true);
             }}

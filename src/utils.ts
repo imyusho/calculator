@@ -1,4 +1,4 @@
-export const MAX_WIDTH = 430;
+export const MAX_WIDTH = 460;
 
 export const getFontSize = (scale: number) => {
   return `calc(min(100vw, ${MAX_WIDTH}px) * ${scale})`;
