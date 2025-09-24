@@ -69,15 +69,15 @@ export const Calculator: FC = () => {
     className: `break-words leading-[1.2] font-light ${
       hasTransition ? "transition-all" : ""
     }`,
-    maxFontSize: width * 0.15,
-    minFontSize: width * 0.08,
+    maxFontSize: width * 0.18,
+    minFontSize: width * 0.1,
   };
 
   const secondaryInputProps: AdaptiveFontSizeProps = {
     className: `break-words leading-[1.2] text-gray-400 ${
       hasTransition ? "transition-all" : ""
     }`,
-    maxFontSize: width * 0.08,
+    maxFontSize: width * 0.06,
     minFontSize: width * 0.04,
   };
 
@@ -115,7 +115,7 @@ export const Calculator: FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-2 pb-3 px-4">
+        <div className="grid grid-cols-4 gap-2 pb-4 px-3">
           <UtilityButton
             onClick={() => {
               setHasTransition(false);
