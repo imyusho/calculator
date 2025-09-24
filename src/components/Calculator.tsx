@@ -17,6 +17,8 @@ import { OperationButton } from "./OperationButton";
 import { UtilityButton } from "./UtilityButton";
 
 export const Calculator: FC = () => {
+  const [history, setHistory] = useState("");
+
   const [input, setInput] = useState("");
   const [isFinished, setIsFinished] = useState(false);
   const [hasTransition, setHasTransition] = useState(false);
@@ -28,6 +30,7 @@ export const Calculator: FC = () => {
   const resetIfFinished = (defaultValue: string = "") => {
     if (isFinished) {
       setIsFinished(false);
+      setHistory(`${input}=${result}`);
       setInput(defaultValue);
     }
   };
@@ -65,16 +68,16 @@ export const Calculator: FC = () => {
     className: `break-words leading-[1.2] font-light ${
       hasTransition ? "transition-all" : ""
     }`,
-    maxFontSize: width * 0.2,
-    minFontSize: width * 0.1,
+    maxFontSize: width * 0.15,
+    minFontSize: width * 0.08,
   };
 
   const secondaryInputProps: AdaptiveFontSizeProps = {
     className: `break-words leading-[1.2] text-gray-400 ${
       hasTransition ? "transition-all" : ""
     }`,
-    maxFontSize: width * 0.1,
-    minFontSize: width * 0.05,
+    maxFontSize: width * 0.08,
+    minFontSize: width * 0.04,
   };
 
   return (
@@ -88,7 +91,13 @@ export const Calculator: FC = () => {
     >
       <div className="h-full flex flex-col text-[#fefefe] pb-12 font-extralight">
         <div className="flex-1 flex flex-col text-right p-4">
-          <div className="flex-1" />
+          <div className="flex-1">
+            {history && (
+              <AdaptiveFontSize {...secondaryInputProps}>
+                {history}
+              </AdaptiveFontSize>
+            )}
+          </div>
           <div className="">
             <AdaptiveFontSize
               {...(!isFinished ? primaryInputProps : secondaryInputProps)}
